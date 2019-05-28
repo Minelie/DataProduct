@@ -1,0 +1,27 @@
+##Farmers Markets in Santa Clara County, California
+###Author: E.Mineo
+###Date: 5/27/2019
+
+This map features the farmers markets open all year round in the Santa Clara county, California.
+
+```{r,echo=FALSE,cache.comments=TRUE}
+library(leaflet)
+```
+
+```{r}
+df <- data.frame(name=c("Stanford","El Mercado Popular","San Jose Government Center","Creekside","Kaiser San Jose", "Kaiser Santa Clara","Berryessa","Morgan Hill","Palo Alto Downtown","Greater Rose Garden","Santa Clara","Santa Teresa","Saratoga","Sunnyvale","Willow Glenn","Alum Rock","Blossom Hill","California Avenue","Campbell Farmers Market","Cupertino Oaks","Evergreen Farmers Market","Los Gatos","Milpitas","Mountain View"),
+                 lat=c(37.4235813,37.301576,37.352346,37.3163651,37.2402198,37.33572,37.40354,37.12931824,37.44,37.32846,37.352212,37.2378526,37.26531,37.37326,37.3032,37.365854,37.2519205,37.4246527,37.2865962,37.323444,37.313488,37.2298862,37.4157441,37.39406),
+                 long=c(-122.1719465,-121.857033,-121.903833,-122.015821,-121.8010105,-121.995842,-121.84869,-121.65101624,-122.16,-121.92296,-121.9490583,-121.8237464,-122.01378,-122.03107,-121.89691,-121.832714,-121.861756,-122.1457965,-121.930976,-122.047601,-121.772679,-121.9799727,-121.897307,-122.076732),
+                 days=c("T","W","W","F","F","F","Sa","Sa","Sa","Sa","Sa","Sa","Sa","Sa","Sa","Sa","Su","Su","Su","Su","Su","Su","Su","Su"),
+                 col=c("green","blue","blue","yellow","yellow","yellow","orange","orange","orange","orange","orange","orange","orange","orange","orange","orange","red","red","red","red","red","red","red","red"))
+```
+
+
+```{r,cache.comments=TRUE}
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(popup = df$name,color=df$col)%>%
+  addLegend(labels = c("T","W","F","Sa","Su"), colors = c("green","blue","yellow","orange", "red"))
+```
+
